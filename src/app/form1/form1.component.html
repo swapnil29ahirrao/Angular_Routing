@@ -1,1 +1,24 @@
 <p>form1 works!</p>
+<form #empForm="ngForm">
+empNo : <input type="number"/> <br/>
+eName : <input type="text" name="myname" required minlength="4" maxlength="10" [(ngModel)]="ename" #nm="ngModel"/> <br/>
+<div *ngIf="nm.invalid && (nm.dirty || nm.touched)"
+    class="alert alert-danger">
+
+  <div *ngIf="nm.errors.required">
+    Name is required.
+  </div>
+  <div *ngIf="nm.errors.minlength">
+    Name must be at least 4 characters long.
+  </div>
+  <div *ngIf="nm.errors.maxlength">
+    Name must be at max 4 characters long.
+  </div>
+
+</div>
+eSalary : <input type="number" min="100" max="200"/> <br/>
+<button [disabled]="disabledAgreement && !empForm.valid ">Submit</button><br/>
+<!-- <input type="submit" [disabled]="disabledAgreement && empForm.invalid"/> <br/> -->
+</form>
+
+Current data is : {{empno}},{{ename}},{{esalary}}

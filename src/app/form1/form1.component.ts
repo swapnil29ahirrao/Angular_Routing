@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Form1Component implements OnInit {
 
+  empno: Number;
+  ename: String;
+  esalary:Number;
+  
   constructor() { }
 
   ngOnInit() {

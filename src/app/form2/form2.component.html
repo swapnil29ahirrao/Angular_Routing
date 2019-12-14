@@ -1,1 +1,30 @@
-<p>form2 works!</p>
+<p>form1 works!</p>
+<form [formGroup]="fg">
+empNo : <input formControlName="empnofc" type="number"/> <br/>
+eName : <input formControlName="enamefc" type="text"/> <br/>
+<div *ngIf="fg.controls['enamefc'].invalid && (fg.controls['enamefc'].dirty || fg.controls['enamefc'].touched)"
+    class="alert alert-danger">
+
+  <div *ngIf="fg.controls['enamefc'].errors.required">
+    Name is required.
+  </div>
+  <div *ngIf="fg.controls['enamefc'].errors.minlength">
+    Name must be at least 4 characters long.
+  </div>
+  <div *ngIf="fg.controls['enamefc'].errors.maxlength">
+    Name must be at max 4 characters long.
+  </div>
+
+</div>
+eSalary : <input formControlName="salaryfc" type="text"/> <br/>
+<button [disabled]="!fg.valid ">Submit</button><br/>
+<!-- <input type="submit" [disabled]="disabledAgreement && empForm.invalid"/> <br/> -->
+</form>
+
+<table border="1" bgcolor="cyan">
+    <th>Control Name</th>
+    <th>Errors</th>
+    <tr *ngFor="let f of fields">
+        <td>{{f}}</td>
+        <td>{{fg.controls[f].errors | json}}</td>
+    </tr>
